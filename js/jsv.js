@@ -178,7 +178,7 @@ if (typeof JSV === 'undefined') {
                     JSV.contentHeight();
                     if($('svg#jsv-tree').height() === 0) {
                         $('svg#jsv-tree').attr('width', $('#main-body').width())
-                                         .attr('height', $('#main-body').height());
+                                         .attr('height', '100%');
                         JSV.resizeViewer();
                         JSV.resetViewer();
 
@@ -1260,8 +1260,8 @@ if (typeof JSV === 'undefined') {
                 //var panBoundary = 20; // Within 20px from edges will pan when dragging.
 
                 // size of the diagram
-                var viewerWidth = JSV.viewerWidth ? JSV.viewerWidth : '100%';
-                var viewerHeight = JSV.viewerHeight ? JSV.viewerHeight : '100%';
+                var viewerWidth = '100%'; // JSV.viewerWidth ? JSV.viewerWidth : '100%';
+                var viewerHeight = '100%'; // JSV.viewerHeight ? JSV.viewerHeight : '100%';
 
                 JSV.zoomListener = d3.behavior.zoom().scaleExtent([0.1, 3]).on('zoom', JSV.zoom);
 
