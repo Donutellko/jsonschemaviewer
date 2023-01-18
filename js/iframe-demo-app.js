@@ -41,7 +41,8 @@
     function sendToEmbed(iframe, jsonString) {
         console.log("sendToEmbed()", jsonString)
         iframe.contentWindow.postMessage({
-          json: jsonString
+          json: jsonString,
+          initialDepth: 1
         }, "*");
     }
     

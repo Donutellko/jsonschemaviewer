@@ -74,6 +74,11 @@ if (typeof JSV === 'undefined') {
         maxDepth: 20,
 
         /**
+         * Default initial depth
+         */
+        initialDepth: 1,
+
+        /**
          * @property {object} labels Nodes to render as non-clickable in the tree. They will auto-expand if child nodes are present.
          */
         labels: {
@@ -867,7 +872,7 @@ if (typeof JSV === 'undefined') {
             // Layout the tree initially and center on the root node.
             // Call visit function to set initial depth
             JSV.tree.nodes(root);
-            JSV.resetTree(root, 1);
+            JSV.resetTree(root, JSV.initialDepth);
             JSV.update(root);
 
             //reset the style for viewer-page

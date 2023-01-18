@@ -9,7 +9,7 @@
         console.log("setupListener")
         function displayMessage (evt) {
             console.log("received data from parent frame", evt)
-            visualizeView(evt.data.json)
+            visualizeView(evt.data.json, evt.data.initialDepth)
         }
 
         if (window.addEventListener) {
@@ -21,7 +21,7 @@
         }
     }
     
-    function visualizeView(schema) {
+    function visualizeView(schema, initialDepth) {
         if (typeof schema === 'string' || schema instanceof String) {
             schema = JSON.parse(schema)
         }
@@ -35,11 +35,13 @@
         $RefParser.dereference(schema).then(function(resolvedSchema) {
               //Prevent circular references.
               resolvedSchema = JSON.parse(stringify(resolvedSchema));
+              console.log("initialize jsv")
               JSV.init({
                 plain: true,
                 schema: resolvedSchema,
                 viewerHeight: $('#main-body').height(),
-                viewerWidth: $('#main-body').width()
+                viewerWidth: $('#main-body').width(),
+                initialDepth: initialDepth == null ? JSV.initialDepth : initialDepth
             }, function() {
                 $('#jsv-tree').css('width', '100%');
                 JSV.resizeViewer();
